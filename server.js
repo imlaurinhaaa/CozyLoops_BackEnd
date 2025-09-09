@@ -6,7 +6,7 @@ const productRoute = require("./src/routes/productRoute");
 const app = express();  
 app.use(cors());  
 app.use(express.json()); 
-app.use("/", productRoute);
+app.use("/api", productRoute);
 
 const PORT = process.env.PORT || 4000;  
 

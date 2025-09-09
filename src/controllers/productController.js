@@ -3,6 +3,9 @@ const productModel = require("../models/productModel");
 const getAllProducts = async (req, res) => {
     try {
         const products = await productModel.getProducts();
+        if (products.length === 0) {
+            return res.status(200).json({ message: "Não há produtos cadastrados." });
+        }
         res.status(200).json(products);
     } catch (error) {
         res.status(400).json({ message: "Erro ao buscar produtos." });
@@ -24,8 +27,8 @@ const getProduct = async (req, res) => {
 const createProduct = async (req, res) => {
     try {
         const image = req.file ? req.file.filename : null;
-        const { category, name, description, difficulty_level, time, price, suggestion, link } = req.body;
-        const newProduct = await productModel.createProduct(category, image, name, description, difficulty_level, time, price, suggestion, link);
+        const { category, name, description, difficulty_level, time, price, suggestion } = req.body;
+        const newProduct = await productModel.createProduct(category, image, name, description, difficulty_level, time, price, suggestion);
         res.status(201).json(newProduct);
     } catch (error) {
         console.log(error);
@@ -38,8 +41,8 @@ const createProduct = async (req, res) => {
 
 const updateProduct = async (req, res) => {
     try {
-        const { category, image, name, description, difficulty_level, time, price, suggestion, link } = req.body;
-        const updatedProduct = await productModel.updateProduct(req.params.id, category, image, name, description, difficulty_level, time, price, suggestion, link);
+        const { category, image, name, description, difficulty_level, time, price, suggestion } = req.body;
+        const updatedProduct = await productModel.updateProduct(req.params.id, category, image, name, description, difficulty_level, time, price, suggestion);
         if (!updatedProduct) {
             return res.status(404).json({ message: "Produto não encontrado." })
         }

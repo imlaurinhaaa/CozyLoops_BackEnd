@@ -1,7 +1,7 @@
 -- Criação do banco de dados Cozy Loops
-CREATE DATABASE cozyLoops;
+CREATE DATABASE cozyloops;
 
-\c cozyLoops
+\c cozyloops
 
 -- Tabela produtos
 CREATE TABLE products (
@@ -9,12 +9,11 @@ CREATE TABLE products (
     category VARCHAR(100) NOT NULL,
     image TEXT NOT NULL,
     name VARCHAR(100) NOT NULL,
-    description TEXT,
-    difficulty_level VARCHAR(50),
-    time VARCHAR(50),
-    price DECIMAL(10, 2) NOT NULL,
-    suggestion TEXT,
-    link TEXT
+    description TEXT NOT NULL,
+    difficulty_level VARCHAR(50) NOT NULL,
+    time TEXT NOT NULL,
+    price TEXT NOT NULL,
+    suggestion TEXT
 );
 
 -- Inserts: Products

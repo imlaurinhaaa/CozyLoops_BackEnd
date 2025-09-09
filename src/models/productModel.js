@@ -10,16 +10,16 @@ const getProductById = async (id) => {
     return result.rows[0];
 };
 
-const createProduct = async (category, image, name, description, difficulty_level, time, price, suggestion, link) => {
-    const result = await pool.query("INSERT INTO products (category, image, name, description, difficulty_level, time, price, suggestion, link) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *",
-        [category, image, name, description, difficulty_level, time, price, suggestion, link]
+const createProduct = async (category, image, name, description, difficulty_level, time, price, suggestion) => {
+    const result = await pool.query("INSERT INTO products (category, image, name, description, difficulty_level, time, price, suggestion) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *",
+        [category, image, name, description, difficulty_level, time, price, suggestion]
     );
     return result.rows[0];
 };
 
-const updateProduct = async (id, category, image, name, description, difficulty_level, time, price, suggestion, link) => {
-    const result = await pool.query("UPDATE products SET category = $1, image = $2, name = $3, description = $4, difficulty_level = $5, time = $6, price = $7, suggestion = $8, link = $9 WHERE id = $10 RETURNING *",
-        [category, image, name, description, difficulty_level, time, price, suggestion, link, id]
+const updateProduct = async (id, category, image, name, description, difficulty_level, time, price, suggestion) => {
+    const result = await pool.query("UPDATE products SET category = $1, image = $2, name = $3, description = $4, difficulty_level = $5, time = $6, price = $7, suggestion = $8 WHERE id = $9 RETURNING *",
+        [category, image, name, description, difficulty_level, time, price, suggestion, id]
     );
     return result.rows[0];
 };
