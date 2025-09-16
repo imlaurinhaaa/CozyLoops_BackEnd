@@ -1,8 +1,14 @@
 const pool = require("../config/database");
 
-const getProducts = async () => {
-    const result = await pool.query("SELECT * FROM products");
-    return result.rows;
+const getProducts = async (category) => {
+    if (category) {
+        const result = await pool.query("SELECT * FROM products WHERE category ILIKE $1",
+            [`%${category}%`]);
+        return result.rows;
+    } else {
+        const result = await pool.query("SELECT * FROM products");
+        return result.rows;
+    }
 };
 
 const getProductById = async (id) => {

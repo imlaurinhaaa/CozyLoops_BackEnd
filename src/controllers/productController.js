@@ -2,7 +2,8 @@ const productModel = require("../models/productModel");
 
 const getAllProducts = async (req, res) => {
     try {
-        const products = await productModel.getProducts();
+        const { category } = req.query;
+        const products = await productModel.getProducts(category);
         if (products.length === 0) {
             return res.status(200).json({ message: "Não há produtos cadastrados." });
         }
