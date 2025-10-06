@@ -46,35 +46,63 @@ O **Cozy Loops** reúne em um só lugar tudo o que você precisa para seu mundo 
 
 ---
 
-## � Como Executar o Projeto
+## 🚀 Como Executar o Projeto
+
+### ⚠️ ETAPAS PRIORITÁRIAS
 
 ### Pré-requisitos
 - Node.js (versão 16 ou superior)
-- npm ou yarn
+- npm
 - Git
+- PostgreSQL instalado
+- pgAdmin (recomendado)
 
 ### 1. Clonar os Repositórios
 
-**Frontend:**
-```bash
-git clone https://github.com/imlaurinhaaa/CozyLoops_FrontEnd.git
-cd CozyLoops_FrontEnd
-```
-
-**Backend (em outro diretório):**
+**Backend:**
 ```bash
 git clone https://github.com/imlaurinhaaa/CozyLoops_BackEnd.git
 cd CozyLoops_BackEnd
 ```
 
-### 2. Instalar Dependências
-
-Em ambos os projetos, execute:
+**Frontend (em outro diretório):**
 ```bash
-npm install
+git clone https://github.com/imlaurinhaaa/CozyLoops_FrontEnd.git
+cd CozyLoops_FrontEnd
 ```
 
-### 3. Executar o Projeto
+### 2. **PRIORIDADE - Configurar Backend**
+
+**Instalar dependências do backend:**
+```bash
+cd CozyLoops_BackEnd
+npm i
+```
+
+**Criar arquivo .env na raiz do projeto backend:**
+```env
+PORT=3000
+DB_USER=postgres
+DB_HOST=localhost
+DB_NAME=cozyloops
+DB_PASSWORD=Laudi213*
+DB_PORT=5432
+```
+
+### 3. **PRIORIDADE - Configurar Banco de Dados**
+
+1. **Abra o pgAdmin**
+2. **Crie o banco de dados:**
+   - Nome: `cozyloops`
+   - Port: `5432` (usar a porta do notebook)
+
+3. **Fazer backup/restore:**
+   - Vá em pgAdmin
+   - Clique com botão direito no banco `cozyloops`
+   - Selecione "Restore"
+   - Escolha o arquivo `backup/cozyloops.sql`
+
+### 4. Executar o Projeto
 
 **Primeiro, inicie o Backend:**
 ```bash
@@ -83,14 +111,25 @@ npm run dev
 ```
 > O backend será executado na porta 3000
 
-**Em seguida, inicie o Frontend:**
+**Em seguida, configure o Frontend:**
 ```bash
 cd CozyLoops_FrontEnd
+npm i
+```
+
+**Criar arquivo .env na raiz do projeto frontend:**
+```env
+NEXT_PUBLIC_API_URL=http://localhost:3000/api
+NEXT_PUBLIC_UPLOADS_URL=http://localhost:3000/uploads
+```
+
+**Iniciar o Frontend:**
+```bash
 npm run dev
 ```
 > O frontend será executado na porta 3001
 
-### 4. Acessar a Aplicação
+### 5. Acessar a Aplicação
 
 Abra seu navegador e acesse: `http://localhost:3001`
 
@@ -98,71 +137,40 @@ Abra seu navegador e acesse: `http://localhost:3001`
 
 ## 📁 Estrutura do Projeto
 
+### Backend (CozyLoops_BackEnd)
 ```
-CozyLoops_FrontEnd/
-├── public/                    # Arquivos estáticos
-│   ├── icons/
-│   │   └── favicon.ico     
-│   ├── images/
-│   │   ├── banner.png        
-│   │   ├── laura.png         
-│   │   └── log-semfundo.png  
-│   └── videos/               # Vídeos dos criadores de conteúdo
-│       ├── annaOpusckevicz.mp4
-│       ├── blogdocroche.mp4
-│       ├── croche.ro.mp4
-│       ├── encantadacrochetaria.mp4
-│       ├── franAluap.mp4
-│       ├── gabrielLacerda.mp4
-│       ├── juSanches.mp4
-│       ├── luanajaworski.mp4
-│       ├── mariecastrodiy.mp4
-│       ├── porsimonecarvalho.mp4
-│       └── tainaMacedo.mp4
+CozyLoops_BackEnd/
+├── .env                      # Variáveis de ambiente
+├── .gitignore               # Arquivos ignorados pelo git
+├── package.json             # Dependências e scripts do projeto
+├── package-lock.json        # Lock file das dependências
+├── server.js                # Arquivo principal do servidor
+├── README.md                # Documentação do projeto
+├── backup/
+│   └── cozyloops.sql        # Backup do banco de dados
 ├── src/
-│   ├── middleware.js        
-│   ├── app/                  # Páginas da aplicação (App Router)
-│   │   ├── globals.css       
-│   │   ├── layout.js         
-│   │   ├── not-found.jsx     
-│   │   ├── not-found.module.css
-│   │   ├── home/
-│   │   │   ├── page.jsx      # Página inicial
-│   │   │   └── Home.module.css
-│   │   ├── inspiracoes/
-│   │   │   ├── page.jsx      # Página de inspirações
-│   │   │   └── Inspiracoes.module.css
-│   │   ├── produtos/
-│   │   │   ├── page.jsx      # Página de produtos
-│   │   │   ├── Produtos.module.css
-│   │   │   └── [id]/         # Rota dinâmica para produto específico
-│   │   │       ├── page.jsx
-│   │   │       └── [id].module.css
-│   │   └── sobre/
-│   │       ├── page.jsx      # Página sobre
-│   │       └── Sobre.module.css
-│   ├── components/           # Componentes reutilizáveis
-│   │   ├── Card.jsx      
-│   │   ├── CardSocial.jsx   
-│   │   ├── Header.jsx       
-│   │   ├── Inspiracao.jsx   
-│   │   └── Video.jsx       
-│   ├── data/                # Dados estáticos da aplicação
-│   │   ├── inspirations.js  
-│   │   └── videos.js        
-│   └── styles/              # Estilos CSS módulos dos componentes
-│       ├── Card.module.css
-│       ├── CardSocial.module.css
-│       ├── Header.module.css
-│       ├── Inspiracao.module.css
-│       └── Video.module.css
-├── eslint.config.mjs      
-├── jsconfig.json          
-├── next.config.mjs        
-├── package.json           
-└── README.md            
+│   ├── config/              # Configurações do projeto
+│   │   ├── database.js      # Configuração do banco de dados
+│   │   └── upload.js        # Configuração de upload de arquivos
+│   ├── controllers/         # Controladores da aplicação
+│   │   └── productController.js  # Controller dos produtos
+│   ├── database/            # Scripts de banco de dados
+│   │   └── schema.sql       # Schema das tabelas
+│   ├── models/              # Modelos de dados
+│   │   └── productModel.js  # Model dos produtos
+│   └── routes/              # Rotas da API
+│       └── productRoute.js  # Rotas dos produtos
+└── uploads/                 # Arquivos de imagem dos produtos
+    ├── 1757779509909-chaveiro1.jpeg
+    ├── 1757879245774-chaveiro2.jpg
+    ├── 1757879420421-roupa1.jpg
+    ├── 1757879572357-portaLivro1.jpg
+    ├── 1757879691850-portaLivro2.jpg
+    ├── 1757879835560-roupa2.jpg
+    ├── 1757880206234-acessorioCabelo1.jpg
+    ├── 1757880335503-bolsa1.jpg
+    └── ... (outras imagens de produtos)
 ```
-
 ---
 
 ## 👥 Autora
