@@ -116,12 +116,7 @@ npm run dev
 cd CozyLoops_FrontEnd
 npm i
 ```
-
-**Criar arquivo .env na raiz do projeto frontend:**
-```env
-NEXT_PUBLIC_API_URL=http://localhost:3000/api
-NEXT_PUBLIC_UPLOADS_URL=http://localhost:3000/uploads
-```
+> Vá para o repositório de Front e crie .env!
 
 **Iniciar o Frontend:**
 ```bash
