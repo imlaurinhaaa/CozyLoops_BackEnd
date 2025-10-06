@@ -85,8 +85,8 @@ PORT=3000
 DB_USER=postgres
 DB_HOST=localhost
 DB_NAME=cozyloops
-DB_PASSWORD=Laudi213*
-DB_PORT=5432
+DB_PASSWORD="sua senha do banco"
+DB_PORT="sua port do seu banco"
 ```
 
 ### 3. **PRIORIDADE - Configurar Banco de Dados**
@@ -94,13 +94,13 @@ DB_PORT=5432
 1. **Abra o pgAdmin**
 2. **Crie o banco de dados:**
    - Nome: `cozyloops`
-   - Port: `5432` (usar a porta do notebook)
 
 3. **Fazer backup/restore:**
    - Vá em pgAdmin
-   - Clique com botão direito no banco `cozyloops`
-   - Selecione "Restore"
-   - Escolha o arquivo `backup/cozyloops.sql`
+   - Criar um banco chamado "cozyloops"
+   - Botão direito: Query Tool
+   - Procure o arquivo "cozyloops.sql"
+   - Aperte em play/run
 
 ### 4. Executar o Projeto
 
