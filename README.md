@@ -140,26 +140,26 @@ Abra seu navegador e acesse: `http://localhost:3001`
 ### Backend (CozyLoops_BackEnd)
 ```
 CozyLoops_BackEnd/
-├── .env                      # Variáveis de ambiente
-├── .gitignore               # Arquivos ignorados pelo git
-├── package.json             # Dependências e scripts do projeto
-├── package-lock.json        # Lock file das dependências
-├── server.js                # Arquivo principal do servidor
-├── README.md                # Documentação do projeto
+├── .env                    
+├── .gitignore              
+├── package.json             
+├── package-lock.json    
+├── server.js                
+├── README.md                
 ├── backup/
 │   └── cozyloops.sql        # Backup do banco de dados
 ├── src/
 │   ├── config/              # Configurações do projeto
-│   │   ├── database.js      # Configuração do banco de dados
-│   │   └── upload.js        # Configuração de upload de arquivos
+│   │   ├── database.js    
+│   │   └── upload.js        
 │   ├── controllers/         # Controladores da aplicação
-│   │   └── productController.js  # Controller dos produtos
+│   │   └── productController.js
 │   ├── database/            # Scripts de banco de dados
-│   │   └── schema.sql       # Schema das tabelas
+│   │   └── schema.sql       
 │   ├── models/              # Modelos de dados
-│   │   └── productModel.js  # Model dos produtos
+│   │   └── productModel.js 
 │   └── routes/              # Rotas da API
-│       └── productRoute.js  # Rotas dos produtos
+│       └── productRoute.js  
 └── uploads/                 # Arquivos de imagem dos produtos
     ├── 1757779509909-chaveiro1.jpeg
     ├── 1757879245774-chaveiro2.jpg
